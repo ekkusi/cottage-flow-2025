@@ -11,7 +11,9 @@ import LoadingIndicator from "./LoadingIndicator";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const EVENT_APP_PROD_URL = "https://cottage-flow.tercel.app";
+const EVENT_APP_PROD_URL =
+  process.env.NEXT_PUBLIC_EVENT_APP_URL ??
+  "https://cottage-flow-2025.vercel.app";
 
 interface Message {
   role: "user" | "assistant";
