@@ -36,12 +36,12 @@ export default function Home() {
           />
         </div>
 
-        <h1 className="block md:hidden wooden-text mb-6 text-8xl font-bold tracking-wider">
+        <h1 className="block md:hidden mb-8 text-6xl tracking-wider">
           COTTAGE FLOW
         </h1>
 
         {/* TEISKO DRIFT text with layered effect */}
-        <h2 className="flow-text text-7xl font-bold tracking-wider -mt-6">
+        <h2 className="flow-text text-5xl md:text-6xl font-bold tracking-wider -mt-6">
           TEISKO DRIFT
         </h2>
 

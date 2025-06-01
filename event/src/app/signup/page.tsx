@@ -13,7 +13,7 @@ type StayDuration = "fri-sun" | "fri-sat" | "sat-sun" | "only-fri" | "only-sat";
 type StayDurationOption = {
   label: string;
   value: StayDuration;
-}
+};
 
 const stayDurationOptions: StayDurationOption[] = [
   { label: "Pe-su", value: "fri-sun" },
@@ -73,9 +73,7 @@ export default function SignupPage() {
 
       {/* Main content */}
       <div className="mx-auto max-w-2xl">
-        <h1 className="retro-shadow text-6xl font-bold text-wood-primary">
-          ILMOITTAUTUMINEN
-        </h1>
+        <h1>ILMOITTAUTUMINEN</h1>
 
         <Card className="mt-12">
           <form onSubmit={handleSubmit} className="space-y-6">

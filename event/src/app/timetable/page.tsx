@@ -22,9 +22,7 @@ export default function TimetablePage() {
 
       {/* Main content */}
       <div className="mx-auto max-w-4xl">
-        <h1 className="retro-shadow text-6xl font-bold text-wood-primary">
-          AIKATAULU
-        </h1>
+        <h1>AIKATAULU</h1>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {/* Friday Schedule */}
@@ -80,9 +78,7 @@ export default function TimetablePage() {
 
         {/* Legend */}
         <Card className="mt-8 rounded-none border-2 border-wood-primary bg-white/50 p-6 backdrop-blur-sm">
-          <h2 className="mb-4 text-2xl font-bold text-wood-primary">
-            PAIKAT
-          </h2>
+          <h2 className="mb-4 text-2xl font-bold text-wood-primary">PAIKAT</h2>
           <div className="grid gap-4 md:grid-cols-3">
             <div>
               <h3 className="text-xl font-bold">PÄÄLAVA</h3>
@@ -99,6 +95,7 @@ export default function TimetablePage() {
           </div>
         </Card>
       </div>
-    </div >
+    </div>
   );
-} 
+}
+

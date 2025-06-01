@@ -144,8 +144,15 @@
     @apply overflow-x-hidden;
   }
 
+  h1 {
+    @apply text-5xl md:text-6xl retro-shadow font-bold text-wood-primary;
+  }
+
+  h2 {
+    @apply text-4xl md:text-5xl;
+  }
+
   :root {
     @apply text-[16px] md:text-[18px];
   }
 }
-

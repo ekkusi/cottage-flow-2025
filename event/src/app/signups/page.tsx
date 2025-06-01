@@ -13,12 +13,11 @@ export default async function SignupsPage() {
 
       {/* Main content */}
       <div className="mx-auto max-w-4xl">
-        <h1 className="retro-shadow mb-8 text-6xl font-bold text-wood-primary">
-          ILMOITTAUTUMISET
-        </h1>
+        <h1>ILMOITTAUTUMISET</h1>
 
         <SignupsTable initialSignups={preloadedSignups} />
       </div>
     </div>
   );
-} 
+}
+

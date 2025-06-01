@@ -10,14 +10,14 @@ export default function InfoPage() {
 
       {/* Main content */}
       <div className="mx-auto max-w-4xl">
-        <h1 className="retro-shadow text-6xl font-bold text-wood-primary">
-          INFO
-        </h1>
+        <h1>INFO</h1>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {/* When & Where section */}
           <Card className="space-y-6">
-            <h2 className="text-3xl font-bold text-wood-primary">MILLOIN & MISSÄ</h2>
+            <h2 className="text-3xl font-bold text-wood-primary">
+              MILLOIN & MISSÄ
+            </h2>
 
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -46,7 +46,9 @@ export default function InfoPage() {
 
           {/* What to Expect section */}
           <Card className="space-y-6">
-            <h2 className="text-3xl font-bold text-wood-primary">MITÄ ODOTTAA</h2>
+            <h2 className="text-3xl font-bold text-wood-primary">
+              MITÄ ODOTTAA
+            </h2>
 
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -75,7 +77,8 @@ export default function InfoPage() {
             <div className="space-y-2">
               <h3 className="text-2xl font-bold">AUTOLLA</h3>
               <p className="text-lg text-gray-600">
-                Tampereelta lyhkänen matka. Parkkipaikkaa reilusti tien varressa.
+                Tampereelta lyhkänen matka. Parkkipaikkaa reilusti tien
+                varressa.
               </p>
             </div>
 
@@ -93,12 +96,19 @@ export default function InfoPage() {
           <h2 className="text-3xl font-bold text-wood-primary">HUOMIOITAVAA</h2>
 
           <ul className="list-inside list-disc space-y-2 text-lg text-gray-600">
-            <li>Telttailuvarusteet mukaan - sisämajoitusta saatavilla hyvin rajoitetusti</li>
-            <li>Ruokaa ja juomaa saatavilla paikan päältä rajoitetusti (ei koko viikonlopun ajan)</li>
+            <li>
+              Telttailuvarusteet mukaan - sisämajoitusta saatavilla hyvin
+              rajoitetusti
+            </li>
+            <li>
+              Ruokaa ja juomaa saatavilla paikan päältä rajoitetusti (ei koko
+              viikonlopun ajan)
+            </li>
             <li>Suihkua ei ole, järvi lähellä on</li>
           </ul>
         </Card>
       </div>
     </div>
   );
-} 
+}
+

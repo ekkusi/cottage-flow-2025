@@ -1,13 +1,42 @@
-@layer utilities {
-  .animation-delay-75 {
-    animation-delay: 75ms;
-  }
-
-  .animation-delay-500 {
-    animation-delay: 500ms;
-  }
-
-  .animation-delay-1000 {
-    animation-delay: 1s;
-  }
+@utility animation-delay-75 {
+  animation-delay: 75ms;
 }
+
+@utility animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+@utility animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+@utility font-vt323 {
+  font-family: var(--font-vt323);
+}
+
+/* Custom retro styles */
+@utility retro-shadow {
+  text-shadow: 2px 2px 0px var(--color-wood-secondary);
+}
+
+/* Wooden text effect */
+@utility wooden-text {
+  color: var(--color-wood-primary);
+  text-shadow:
+    2px 2px 0px var(--color-wood-secondary),
+    -1px -1px 0px var(--color-wood-secondary),
+    1px -1px 0px var(--color-wood-secondary),
+    -1px 1px 0px var(--color-wood-secondary),
+    3px 3px 5px rgba(0, 0, 0, 0 @utility 4);
+}
+
+/* Flow text effect */
+@utility flow-text {
+  -webkit-text-stroke: 2px var(--color-flow-outline);
+  color: var(--color-flow-outline);
+  text-shadow:
+    3px 3px 0px var(--color-flow-cyan),
+    6px 6px 0px var(--color-flow-pink),
+    9px 9px 0px var(--color-flow-green);
+}
+
