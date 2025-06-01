@@ -6,30 +6,65 @@ import { Textarea } from "@/components/ui/textarea";
 import { DecorativeElements } from "@/components/general/decorative-elements";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
-const stayDurationOptions = [
-  { label: "Pe-su", value: "1" },
-  { label: "Pe-la", value: "2" },
-  { label: "La-su", value: "3" },
-  { label: "Vain pe", value: "4" },
-  { label: "Vain la", value: "5" },
+type StayDuration = "fri-sun" | "fri-sat" | "sat-sun" | "only-fri" | "only-sat";
+type StayDurationOption = {
+  label: string;
+  value: StayDuration;
+}
+
+const stayDurationOptions: StayDurationOption[] = [
+  { label: "Pe-su", value: "fri-sun" },
+  { label: "Pe-la", value: "fri-sat" },
+  { label: "La-su", value: "sat-sun" },
+  { label: "Vain pe", value: "only-fri" },
+  { label: "Vain la", value: "only-sat" },
 ];
 
+type FormData = {
+  name: string;
+  stayDuration: StayDuration;
+  diet: string;
+  additionalInfo: string;
+};
+
 export default function SignupPage() {
-  const [formData, setFormData] = useState({
+  const createSignup = useMutation(api.signups.create);
+  const [formData, setFormData] = useState<FormData>({
     name: "",
-    stayDuration: stayDurationOptions[0].value,
+    stayDuration: "fri-sun",
     diet: "",
     additionalInfo: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle the form submission
-    alert("Ilmoittautuminen ei ihan vielä toiminnassa..")
-    // You can add your form submission logic here
+    try {
+      await createSignup(formData);
+      alert("Kiitos ilmoittautumisesta!");
+      setFormData({
+        name: "",
+        stayDuration: "fri-sun",
+        diet: "",
+        additionalInfo: "",
+      });
+    } catch (error) {
+      console.error("Error submitting signup:", error);
+      alert("Virhe ilmoittautumisessa. Yritä uudelleen.");
+    }
   };
-  const selectClassName = "w-full rounded-none border-2 border-wood-primary bg-transparent p-2 text-lg focus:border-wood-secondary";
+
+  const handleStayDurationChange = (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const value = e.target.value as StayDuration;
+    setFormData({ ...formData, stayDuration: value });
+  };
+
+  const selectClassName =
+    "w-full rounded-none border-2 border-wood-primary bg-transparent p-2 text-lg focus:border-wood-secondary";
 
   return (
     <div className="relative min-h-[80vh] px-4 py-12">
@@ -78,15 +113,16 @@ export default function SignupPage() {
 
             {/* Stay duration */}
             <div>
-              <label htmlFor="stayDuration" className="mb-2 block text-xl font-bold">
+              <label
+                htmlFor="stayDuration"
+                className="mb-2 block text-xl font-bold"
+              >
                 AIKA
               </label>
               <select
                 id="stayDuration"
                 value={formData.stayDuration}
-                onChange={(e) =>
-                  setFormData({ ...formData, stayDuration: e.target.value })
-                }
+                onChange={handleStayDurationChange}
                 className={selectClassName}
                 required
               >

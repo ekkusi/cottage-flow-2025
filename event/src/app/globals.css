@@ -145,6 +145,7 @@
   }
 
   :root {
-    font-size: 18px;
+    @apply text-[16px] md:text-[18px];
   }
 }
+
