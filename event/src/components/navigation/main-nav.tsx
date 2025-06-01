@@ -11,6 +11,12 @@ const navigation = [
   { name: "Ilmoittautuminen", href: "/signup" },
 ];
 
+const startPositions: Record<number, number> = {
+  0: 20,
+  1: 140,
+  2: 60,
+}
+
 export function MainNav() {
   const pathname = usePathname();
 
@@ -19,7 +25,29 @@ export function MainNav() {
       {/* Decorative top border */}
       <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-wood-secondary via-wood-primary to-wood-secondary" />
 
-      <div className="mx-auto flex max-w-4xl items-center justify-center space-x-6">
+      {/* Wooden planks background pattern */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[0, 1, 2].map((rowIndex) => (
+          <div
+            key={rowIndex}
+            className="relative h-[33.33%] w-full border-b border-wood-secondary/30"
+          >
+            {/* Vertical lines for each row */}
+            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20].map((lineIndex) => (
+              <div
+                key={`${rowIndex}-${lineIndex}`}
+                className="absolute h-full w-px bg-wood-secondary/20"
+                style={{
+                  left: `${startPositions[rowIndex] + 200 * lineIndex}px`,
+                }}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* Content container */}
+      <div className="relative mx-auto flex max-w-4xl items-center justify-center space-x-6">
         {navigation.map((item) => {
           const isActive = pathname === item.href;
           return (
