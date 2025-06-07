@@ -32,7 +32,7 @@ export function PromptView({ onSubmit }: PromptViewProps) {
           <Textarea
             name="prompt"
             placeholder="Toivoisin kesältäni paljon rentoilua ja hieman hauskuttelua..."
-            className="min-h-[120px] text-lg p-4 resize-none"
+            className="min-h-[120px] text-sm p-4 resize-none"
             autoFocus
           />
           <Button type="submit" className="w-full">
