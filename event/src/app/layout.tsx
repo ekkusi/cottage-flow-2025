@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, VT323 } from "next/font/google";
+import { Inter, VT323, Shadows_Into_Light } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { MainNav } from "@/components/navigation/main-nav";
@@ -10,6 +10,11 @@ const vt323 = VT323({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-vt323",
+});
+const shadowsIntoLight = Shadows_Into_Light({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-shadows-into-light",
 });
 
 export const metadata: Metadata = {
@@ -28,6 +33,7 @@ export default function RootLayout({
         className={cn(
           inter.variable,
           vt323.variable,
+          shadowsIntoLight.variable,
           "min-h-screen bg-gray-100 background-repeat-none text-black antialiased flex flex-col",
         )}
       >

@@ -14,6 +14,10 @@
   font-family: var(--font-vt323);
 }
 
+@utility font-shadows-into-light {
+  font-family: var(--font-shadows-into-light);
+}
+
 /* Custom retro styles */
 @utility retro-shadow {
   text-shadow: 2px 2px 0px var(--color-wood-secondary);
@@ -39,4 +43,3 @@
     6px 6px 0px var(--color-flow-pink),
     9px 9px 0px var(--color-flow-green);
 }
-

@@ -1,6 +1,8 @@
 import { MapPin, Calendar, Clock, Music, Tent, Smile } from "lucide-react";
 import { DecorativeElements } from "@/components/general/decorative-elements";
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
 
 export default function InfoPage() {
   return (
@@ -15,9 +17,7 @@ export default function InfoPage() {
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {/* When & Where section */}
           <Card className="space-y-6">
-            <h2 className="text-3xl font-bold text-wood-primary">
-              MILLOIN & MISSÄ
-            </h2>
+            <h2 className="font-bold text-wood-primary">MILLOIN & MISSÄ</h2>
 
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -33,7 +33,7 @@ export default function InfoPage() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-6 w-6 text-wood-primary" />
                 <div>
-                  <p className="text-xl">PIUHARINNE</p>
+                  <p className="text-xl">LÄNSI-TEISKON SEURATALO</p>
                   <p className="text-lg text-gray-600">
                     Piuharintie 615
                     <br />
@@ -46,9 +46,7 @@ export default function InfoPage() {
 
           {/* What to Expect section */}
           <Card className="space-y-6">
-            <h2 className="text-3xl font-bold text-wood-primary">
-              MITÄ ODOTTAA
-            </h2>
+            <h2 className="font-bold text-wood-primary">MITÄ ODOTTAA</h2>
 
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -71,44 +69,65 @@ export default function InfoPage() {
 
         {/* Getting There section */}
         <Card className="mt-8 space-y-6">
-          <h2 className="text-3xl font-bold text-wood-primary">SAAPUMINEN</h2>
+          <h2 className="font-bold text-wood-primary">SAAPUMINEN</h2>
 
           <div className="space-y-4">
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold">AUTOLLA</h3>
-              <p className="text-lg text-gray-600">
+              <h3 className="font-bold">AUTOLLA</h3>
+              <p className="text-gray-600">
                 Tampereelta lyhkänen matka. Parkkipaikkaa reilusti tien
                 varressa.
               </p>
             </div>
 
             <div className="space-y-2">
-              <h3 className="text-2xl font-bold">JULKISILLA</h3>
-              <p className="text-lg text-gray-600">
+              <h3 className="font-bold">JULKISILLA</h3>
+              <p className="text-gray-600">
                 Bussilla pääsee Tampereelta. Semmonen tunti pari menee.
               </p>
+            </div>
+
+            <div className="space-y-2">
+              <h3 className="font-bold">KYYTI-EXCEL</h3>
+              <p className="text-gray-600">
+                Oletko tulossa autolla ja kyydissäsi on tilaa? Oletko kyytiä
+                vailla? Ilmianna itsesi tai etsi kyytiä Kyyti-excelistä:
+              </p>
+              <div className="flex flex-col items-center mt-4">
+                <Link
+                  href="https://docs.google.com/spreadsheets/d/1r5ECRTge5LPUpEoxoMnopu8nPiQnldemdSTUUa1L0ko/edit?usp=sharing"
+                  className={buttonVariants()}
+                  target="_blank"
+                >
+                  {/* https://docs.google.com/spreadsheets/d/1r5ECRTge5LPUpEoxoMnopu8nPiQnldemdSTUUa1L0ko/edit?usp=sharing */}
+                  KYYTI-EXCELIIN
+                </Link>
+              </div>
             </div>
           </div>
         </Card>
 
         {/* Important Notes section */}
         <Card className="mt-8 space-y-4">
-          <h2 className="text-3xl font-bold text-wood-primary">HUOMIOITAVAA</h2>
+          <h2 className="font-bold text-wood-primary">HUOMIOITAVAA</h2>
 
           <ul className="list-inside list-disc space-y-2 text-lg text-gray-600">
             <li>
               Telttailuvarusteet mukaan - sisämajoitusta saatavilla hyvin
-              rajoitetusti
+              rajoitetusti. Jos telttailu ei ole optio, niin laittele viestiä
+              järjestäjille.
             </li>
             <li>
-              Ruokaa ja juomaa saatavilla paikan päältä rajoitetusti (ei koko
-              viikonlopun ajan)
+              Yhteisiä ruokia yritetään järjestellä 1 kpl per päivä. Muuten omat
+              ruoat ja juomat mukaan. Talossa on ihan hyvä keittiö, mutta se ei
+              joka tapauksessa riitä kaikkien kokkailuihin. Jos siis Trangia
+              löytyy, niin otahan mukaan. Jääkaappitilaa myöskin hyvin
+              rajoitetusti.
             </li>
-            <li>Suihkua ei ole, järvi lähellä on</li>
+            <li>Suihkua ei ole, järvi lähellä on.</li>
           </ul>
         </Card>
       </div>
     </div>
   );
 }
-
