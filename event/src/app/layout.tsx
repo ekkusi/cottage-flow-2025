@@ -18,8 +18,8 @@ const shadowsIntoLight = Shadows_Into_Light({
 });
 
 export const metadata: Metadata = {
-  title: "Cottage Flow 2025",
-  description: "A weekend of music and fun with friends",
+  title: "Cottage Flow - Teisko Drift",
+  description: "Kesän toisiksi paras viikonloppu",
 };
 
 export default function RootLayout({
