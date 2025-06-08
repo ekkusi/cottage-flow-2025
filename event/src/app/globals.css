@@ -7,7 +7,6 @@
 
 @theme inline {
   --font-vt323: var(--font-vt323);
-  --font-inter: var(--font-inter);
 
   /* New color scheme */
   --color-wood-primary: #c4a484;

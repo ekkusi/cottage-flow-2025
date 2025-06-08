@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 type WoodenPlankProps = React.PropsWithChildren<{
   rows: number;
   linesPerRow?: number;
+  noBorders?: boolean;
   className: string;
 }>;
 
@@ -17,6 +18,7 @@ const WoodenPlank = ({
   rows,
   linesPerRow = 10,
   children,
+  noBorders = false,
   className,
 }: WoodenPlankProps) => {
   const rowIndexes = Array.from(Array(rows).keys());
@@ -49,12 +51,14 @@ const WoodenPlank = ({
         </div>
       ))}
       {/* Decorative borders */}
-      <div className="absolute inset-x-0 top-0 h-0.5 bg-wood-secondary" />
-      <div className="absolute inset-x-0 bottom-0 h-2 bg-wood-secondary" />
-      <div className="absolute inset-y-0 left-0 w-0.5 bg-wood-secondary" />
-      <div
-        className="absolute inset-y-0 right-0 w-2 bg-wood-secondary"
-      />
+      {!noBorders && (
+        <>
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-wood-secondary" />
+          <div className="absolute inset-x-0 bottom-0 h-2 bg-wood-secondary" />
+          <div className="absolute inset-y-0 left-0 w-0.5 bg-wood-secondary" />
+          <div className="absolute inset-y-0 right-0 w-2 bg-wood-secondary" />
+        </>
+      )}
 
       {children}
     </div>

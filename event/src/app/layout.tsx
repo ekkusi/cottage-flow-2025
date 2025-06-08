@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, VT323, Shadows_Into_Light } from "next/font/google";
+import { VT323, Shadows_Into_Light } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { MainNav } from "@/components/navigation/main-nav";
 import Providers from "./Providers";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const vt323 = VT323({
   weight: "400",
   subsets: ["latin"],
@@ -29,19 +30,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fi" className="h-full">
-      <body
-        className={cn(
-          inter.variable,
-          vt323.variable,
-          shadowsIntoLight.variable,
-          "min-h-screen bg-gray-100 background-repeat-none text-black antialiased flex flex-col",
-        )}
-      >
+      <ClerkProvider>
         <Providers>
-          <MainNav />
-          <main className="flex flex-col flex-1">{children}</main>
+          <body
+            className={cn(
+              vt323.variable,
+              shadowsIntoLight.variable,
+              "min-h-screen bg-gray-100 background-repeat-none text-black antialiased flex flex-col",
+            )}
+          >
+            <MainNav />
+            <main className="flex flex-col flex-1">{children}</main>
+            <Toaster />
+          </body>
         </Providers>
-      </body>
+      </ClerkProvider>
     </html>
   );
 }

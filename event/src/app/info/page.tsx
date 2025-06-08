@@ -88,19 +88,14 @@ export default function InfoPage() {
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-bold">KYYTI-EXCEL</h3>
+              <h3 className="font-bold">KYYDIT</h3>
               <p className="text-gray-600">
                 Oletko tulossa autolla ja kyydissäsi on tilaa? Oletko kyytiä
-                vailla? Ilmianna itsesi tai etsi kyytiä Kyyti-excelistä:
+                vailla? Ilmianna itsesi tai etsi kyytiä Kyydit-sivulta:
               </p>
               <div className="flex flex-col items-center mt-4">
-                <Link
-                  href="https://docs.google.com/spreadsheets/d/1r5ECRTge5LPUpEoxoMnopu8nPiQnldemdSTUUa1L0ko/edit?usp=sharing"
-                  className={buttonVariants()}
-                  target="_blank"
-                >
-                  {/* https://docs.google.com/spreadsheets/d/1r5ECRTge5LPUpEoxoMnopu8nPiQnldemdSTUUa1L0ko/edit?usp=sharing */}
-                  KYYTI-EXCELIIN
+                <Link href="/car-rides" className={buttonVariants()}>
+                  KYYDIT
                 </Link>
               </div>
             </div>

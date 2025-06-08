@@ -3,12 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { SignOutButton } from "@clerk/clerk-react";
+import { useConvexAuth } from "convex/react";
+import { MobileNav } from "./mobile-nav";
 
 const navigation = [
   { name: "Koti", href: "/" },
   { name: "Info", href: "/info" },
   { name: "Ohjelma", href: "/program" },
   { name: "Ilmoittautuminen", href: "/signup" },
+  { name: "Kyydit", href: "/car-rides" },
 ];
 
 const startPositions: Record<number, number> = {
@@ -19,6 +23,10 @@ const startPositions: Record<number, number> = {
 
 export function MainNav() {
   const pathname = usePathname();
+  const { isAuthenticated } = useConvexAuth();
+
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const redirectUrl = origin + pathname;
 
   return (
     <nav className="relative bg-wood-primary px-4 py-3 shadow-md">
@@ -49,30 +57,43 @@ export function MainNav() {
         ))}
       </div>
 
-      {/* Content container */}
-      <div className="relative mx-auto flex max-w-4xl items-center justify-center space-x-6">
-        {navigation.map((item) => {
-          const isActive = pathname === item.href;
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={cn(
-                "group relative text-lg font-vt323 text-white transition-all duration-300",
-                isActive && "text-wood-secondary",
-              )}
-            >
-              {/* Hover effect underline */}
-              <span
+      {/* Mobile Navigation */}
+      <div className="relative flex items-center justify-between">
+        <MobileNav />
+
+        {/* Desktop Navigation */}
+        <div className="relative mx-auto hidden md:flex max-w-4xl items-center justify-center space-x-6">
+          {navigation.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
                 className={cn(
-                  "absolute -bottom-0.5 left-0 h-0.5 w-0 bg-wood-secondary transition-all duration-300 group-hover:w-full",
-                  isActive && "w-full",
+                  "group relative text-lg font-vt323 text-white transition-all duration-300",
+                  isActive && "text-wood-secondary",
                 )}
-              />
-              {item.name.toUpperCase()}
-            </Link>
-          );
-        })}
+              >
+                {/* Hover effect underline */}
+                <span
+                  className={cn(
+                    "absolute -bottom-0.5 left-0 h-0.5 w-0 bg-wood-secondary transition-all duration-300 group-hover:w-full",
+                    isActive && "w-full",
+                  )}
+                />
+                {item.name.toUpperCase()}
+              </Link>
+            );
+          })}
+        </div>
+
+        {isAuthenticated && (
+          <SignOutButton redirectUrl={redirectUrl}>
+            <span className="absolute hidden md:block right-0 text-white cursor-pointer hover:opacity-70">
+              Kirjaudu ulos
+            </span>
+          </SignOutButton>
+        )}
       </div>
 
       {/* Decorative bottom border */}
@@ -80,4 +101,3 @@ export function MainNav() {
     </nav>
   );
 }
-

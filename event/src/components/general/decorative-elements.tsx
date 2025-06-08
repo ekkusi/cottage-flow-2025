@@ -6,7 +6,14 @@ interface DecorativeElementsProps {
   count: number;
 }
 
-type ShapeType = 'circle' | 'triangle' | 'star' | 'square' | 'layeredCircle' | 'layeredSquare' | 'layeredStar';
+type ShapeType =
+  | "circle"
+  | "triangle"
+  | "star"
+  | "square"
+  | "layeredCircle"
+  | "layeredSquare"
+  | "layeredStar";
 
 interface ElementState {
   x: number;
@@ -39,17 +46,21 @@ const getRandomRotation = () => {
 };
 
 const getRandomColor = () => {
-  const colors = ['bg-flow-pink', 'bg-flow-cyan', 'bg-flow-green'] as const;
+  const colors = ["bg-flow-pink", "bg-flow-cyan", "bg-flow-green"] as const;
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  console.log("Got random color", randomColor);
 
   return randomColor;
 };
 
 const getRandomShape = (): ShapeType => {
   const shapes: ShapeType[] = [
-    'circle', 'triangle', 'star', 'square',
-    'layeredCircle', 'layeredSquare', 'layeredStar'
+    "circle",
+    "triangle",
+    "star",
+    "square",
+    "layeredCircle",
+    "layeredSquare",
+    "layeredStar",
   ];
   return shapes[Math.floor(Math.random() * shapes.length)];
 };
@@ -58,7 +69,10 @@ const getRandomOpacity = () => {
   return Math.random() * 0.5 + 0.3; // 0.3 to 0.8
 };
 
-const getRandomPosition = (containerSize: { width: number; height: number }, elementSize: number) => {
+const getRandomPosition = (
+  containerSize: { width: number; height: number },
+  elementSize: number,
+) => {
   return {
     x: Math.random() * (containerSize.width - elementSize),
     y: Math.random() * (containerSize.height - elementSize),
@@ -70,7 +84,7 @@ const ShapeElement = ({
   color,
   secondaryColor,
   size,
-  opacity
+  opacity,
 }: {
   shape: ShapeType;
   color: string;
@@ -81,24 +95,32 @@ const ShapeElement = ({
   const layerOffset = Math.floor(size * 0.08); // Reduced from 0.15 to 0.08 (8% offset)
 
   switch (shape) {
-    case 'circle':
-      return <div className={`${color} w-full h-full rounded-full`} style={{ opacity }} />;
+    case "circle":
+      return (
+        <div
+          className={`${color} w-full h-full rounded-full`}
+          style={{ opacity }}
+        />
+      );
 
-    case 'layeredCircle':
+    case "layeredCircle":
       return (
         <>
           <div
             className={`${secondaryColor} absolute w-full h-full rounded-full`}
             style={{
               transform: `translate(${layerOffset}px, ${layerOffset}px)`,
-              opacity: opacity * 0.7
+              opacity: opacity * 0.7,
             }}
           />
-          <div className={`${color} w-full h-full rounded-full`} style={{ opacity }} />
+          <div
+            className={`${color} w-full h-full rounded-full`}
+            style={{ opacity }}
+          />
         </>
       );
 
-    case 'triangle':
+    case "triangle":
       return (
         <div
           className={`${color} w-0 h-0`}
@@ -106,58 +128,61 @@ const ShapeElement = ({
             borderLeft: `${size / 2}px solid var(--color-background)`,
             borderRight: `${size / 2}px solid var(--color-background)`,
             borderBottom: `${size}px solid transparent`,
-            opacity
+            opacity,
           }}
         />
       );
 
-    case 'star':
+    case "star":
       return (
         <div
           className={`${color} w-full h-full`}
           style={{
-            clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
-            opacity
+            clipPath:
+              "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+            opacity,
           }}
         />
       );
 
-    case 'layeredStar':
+    case "layeredStar":
       return (
         <>
           <div
             className={`${secondaryColor} absolute w-full h-full`}
             style={{
-              clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
+              clipPath:
+                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
               transform: `translate(${layerOffset}px, ${layerOffset}px)`,
-              opacity: opacity * 0.7
+              opacity: opacity * 0.7,
             }}
           />
           <div
             className={`${color} w-full h-full`}
             style={{
-              clipPath: 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)',
-              opacity: opacity
+              clipPath:
+                "polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)",
+              opacity: opacity,
             }}
           />
         </>
       );
 
-    case 'layeredSquare':
+    case "layeredSquare":
       return (
         <>
           <div
             className={`${secondaryColor} absolute w-full h-full`}
             style={{
               transform: `translate(${layerOffset}px, ${layerOffset}px)`,
-              opacity: opacity * 0.7
+              opacity: opacity * 0.7,
             }}
           />
           <div className={`${color} w-full h-full`} style={{ opacity }} />
         </>
       );
 
-    case 'square':
+    case "square":
     default:
       return <div className={`${color} w-full h-full`} style={{ opacity }} />;
   }
@@ -175,27 +200,29 @@ export function DecorativeElements({ count }: DecorativeElementsProps) {
     const containerRect = container.getBoundingClientRect();
 
     // Initialize elements
-    const initialElements: ElementState[] = Array.from({ length: count }).map(() => {
-      const size = getRandomSize();
-      const { x, y } = getRandomPosition(
-        { width: containerRect.width, height: containerRect.height },
-        size
-      );
+    const initialElements: ElementState[] = Array.from({ length: count }).map(
+      () => {
+        const size = getRandomSize();
+        const { x, y } = getRandomPosition(
+          { width: containerRect.width, height: containerRect.height },
+          size,
+        );
 
-      return {
-        x,
-        y,
-        speedX: getRandomSpeed(),
-        speedY: getRandomSpeed(),
-        size,
-        rotation: getRandomRotation(),
-        rotationSpeed: getRandomRotationSpeed(),
-        color: getRandomColor(),
-        secondaryColor: getRandomColor(),
-        opacity: getRandomOpacity(),
-        shape: getRandomShape(),
-      };
-    });
+        return {
+          x,
+          y,
+          speedX: getRandomSpeed(),
+          speedY: getRandomSpeed(),
+          size,
+          rotation: getRandomRotation(),
+          rotationSpeed: getRandomRotationSpeed(),
+          color: getRandomColor(),
+          secondaryColor: getRandomColor(),
+          opacity: getRandomOpacity(),
+          shape: getRandomShape(),
+        };
+      },
+    );
 
     setElements(initialElements);
 
@@ -273,4 +300,5 @@ export function DecorativeElements({ count }: DecorativeElementsProps) {
       ))}
     </div>
   );
-} 
+}
+
