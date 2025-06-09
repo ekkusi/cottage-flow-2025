@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Kesäsuunnittelija",
+  title: "KesäsuunnittelijaGPT 4.0",
   description: "Suunnittele elämäsi paras kesä!",
 };
 
