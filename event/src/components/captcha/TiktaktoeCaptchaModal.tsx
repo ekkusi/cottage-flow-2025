@@ -13,11 +13,18 @@ import {
 import { Button } from "@/components/ui/button"; // For "Try Again" button
 
 // Helper function to determine the winner
-const calculateWinnerLogic = (squares: Array<'X' | 'O' | null>): 'X' | 'O' | null => {
+const calculateWinnerLogic = (
+  squares: Array<"X" | "O" | null>,
+): "X" | "O" | null => {
   const lines = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-    [0, 4, 8], [2, 4, 6],       // diagonals
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8], // rows
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8], // columns
+    [0, 4, 8],
+    [2, 4, 6], // diagonals
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
@@ -39,10 +46,13 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
   onClose,
   onSuccess,
 }) => {
-  const [board, setBoard] = React.useState<Array<'X' | 'O' | null>>(Array(9).fill(null));
+  const [board, setBoard] = React.useState<Array<"X" | "O" | null>>(
+    Array(9).fill(null),
+  );
   const [isPlayerTurn, setIsPlayerTurn] = React.useState<boolean>(true); // Player is 'X'
-  const [winner, setWinner] = React.useState<'X' | 'O' | 'draw' | null>(null);
-  const [gameStatusMessage, setGameStatusMessage] = React.useState<string>("Your turn (X)");
+  const [winner, setWinner] = React.useState<"X" | "O" | "draw" | null>(null);
+  const [gameStatusMessage, setGameStatusMessage] =
+    React.useState<string>("Your turn (X)");
 
   const resetGame = () => {
     setBoard(Array(9).fill(null));
@@ -67,8 +77,8 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
         for (let i = 0; i < board.length; i++) {
           if (!board[i]) {
             const tempBoard = [...board];
-            tempBoard[i] = 'O';
-            if (calculateWinnerLogic(tempBoard) === 'O') {
+            tempBoard[i] = "O";
+            if (calculateWinnerLogic(tempBoard) === "O") {
               bestMove = i;
               break;
             }
@@ -80,8 +90,8 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
           for (let i = 0; i < board.length; i++) {
             if (!board[i]) {
               const tempBoard = [...board];
-              tempBoard[i] = 'X';
-              if (calculateWinnerLogic(tempBoard) === 'X') {
+              tempBoard[i] = "X";
+              if (calculateWinnerLogic(tempBoard) === "X") {
                 bestMove = i;
                 break;
               }
@@ -98,13 +108,14 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
             }
           });
           if (availableMoves.length > 0) {
-            bestMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+            bestMove =
+              availableMoves[Math.floor(Math.random() * availableMoves.length)];
           }
         }
 
         if (bestMove !== -1) {
           const newBoard = [...board];
-          newBoard[bestMove] = 'O';
+          newBoard[bestMove] = "O";
           setBoard(newBoard);
 
           const currentWinner = calculateWinnerLogic(newBoard);
@@ -112,8 +123,8 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
             setWinner(currentWinner);
             // Message for AI win is handled here
             setGameStatusMessage(`AI (${currentWinner}) wins!`);
-          } else if (newBoard.every(cell => cell !== null)) {
-            setWinner('draw');
+          } else if (newBoard.every((cell) => cell !== null)) {
+            setWinner("draw");
             setGameStatusMessage("It's a draw!");
           } else {
             setIsPlayerTurn(true);
@@ -136,21 +147,24 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
     }
 
     const newBoard = [...board];
-    newBoard[index] = 'X';
+    newBoard[index] = "X";
     setBoard(newBoard);
 
     const currentWinner = calculateWinnerLogic(newBoard);
-    if (currentWinner === 'X') {
-      setWinner('X'); // Ensure winner state is set
+    if (currentWinner === "X") {
+      setWinner("X"); // Ensure winner state is set
       setGameStatusMessage("You won! Well done!");
       onSuccess(); // Call the success callback
-    } else if (currentWinner) { // AI ('O') wins
+    } else if (currentWinner) {
+      // AI ('O') wins
       setWinner(currentWinner);
       setGameStatusMessage(`AI (${currentWinner}) wins!`);
-    } else if (newBoard.every(cell => cell !== null)) { // Draw
-      setWinner('draw');
+    } else if (newBoard.every((cell) => cell !== null)) {
+      // Draw
+      setWinner("draw");
       setGameStatusMessage("It's a draw!");
-    } else { // Continue game
+    } else {
+      // Continue game
       setIsPlayerTurn(false); // Switch to AI's turn
       setGameStatusMessage("AI's turn (O)...");
     }
@@ -164,9 +178,9 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Prove you're human: Win Tic-Tac-Toe</DialogTitle>
+          <DialogTitle>{"Prove you're human: Win Tic-Tac-Toe"}</DialogTitle>
           <DialogDescription>
-            Place your 'X' to win against the AI.
+            {"Place your 'X' to win against the AI."}
           </DialogDescription>
         </DialogHeader>
 
@@ -179,7 +193,7 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
                 onClick={() => handleCellClick(index)}
                 className="flex h-20 w-20 items-center justify-center rounded-sm border border-muted bg-background text-4xl font-bold transition-colors hover:bg-accent/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
                 disabled={!!winner || !!board[index] || !isPlayerTurn}
-                aria-label={`Cell ${index + 1}${cell ? `: ${cell}` : ' (empty)'}`}
+                aria-label={`Cell ${index + 1}${cell ? `: ${cell}` : " (empty)"}`}
               >
                 {cell}
               </button>
@@ -188,16 +202,19 @@ const TiktaktoeCaptchaModal: React.FC<TiktaktoeCaptchaModalProps> = ({
         </div>
 
         {/* Game status message */}
-        <div className="my-2 text-center min-h-[2em]"> {/* min-h to prevent layout shift */}
+        <div className="my-2 text-center min-h-[2em]">
+          {" "}
+          {/* min-h to prevent layout shift */}
           <p className="text-lg font-vt323">{gameStatusMessage}</p>
         </div>
 
         <DialogFooter className="sm:justify-start gap-2">
-          {winner && winner !== 'X' && ( // Show "Try Again" if AI won or it's a draw
-            <Button type="button" variant="outline" onClick={resetGame}>
-              Try Again
-            </Button>
-          )}
+          {winner &&
+            winner !== "X" && ( // Show "Try Again" if AI won or it's a draw
+              <Button type="button" variant="outline" onClick={resetGame}>
+                Try Again
+              </Button>
+            )}
           {/* Default Radix close button (X icon) is already present in DialogContent.
               If an additional explicit text "Close" button is desired:
           <DialogClose asChild>
