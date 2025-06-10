@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Clock, Music, Tent, Smile } from "lucide-react";
+import { MapPin, Calendar, Music, Tent, Smile, Euro } from "lucide-react";
 import { DecorativeElements } from "@/components/general/decorative-elements";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
@@ -25,13 +25,19 @@ export default function InfoPage() {
                 <p className="text-xl">18.-20.7.2025</p>
               </div>
 
-              <div className="flex items-center gap-3">
-                <Clock className="h-6 w-6 text-wood-primary" />
-                <p className="text-xl">MIHIN AIKAAN VAAN PÄÄSET</p>
+              <div className="flex items-start gap-3">
+                <Euro className="h-6 w-6 text-wood-primary mt-[2px]" />
+                <div className="max-w-[80%]">
+                  <p className="text-xl">10€ (tai 5e vaan yks päivä)</p>
+                  <p className="text-lg text-gray-600">
+                    Vähän tarvitaan almuja tilan vuokran maksamiseks,
+                    pahottelut...
+                  </p>
+                </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <MapPin className="h-6 w-6 text-wood-primary" />
+                <MapPin className="h-6 w-6 text-wood-primary mt-[2px]" />
                 <div>
                   <p className="text-xl">LÄNSI-TEISKON SEURATALO</p>
                   <p className="text-lg text-gray-600">
