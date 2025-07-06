@@ -22,6 +22,7 @@ export const create = mutation({
       v.literal("only-fri"),
       v.literal("only-sat")
     ),
+    avec: v.boolean(),
     wantsToEat: v.boolean(),
     diet: v.string(),
     otherDietRestrictions: v.string(),

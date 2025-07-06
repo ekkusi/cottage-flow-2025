@@ -30,6 +30,7 @@ type FormData = {
   name: string;
   stayDuration: StayDuration;
   wantsToEat: boolean;
+  avec: boolean;
   diet: string;
   otherDietRestrictions: string;
   additionalInfo: string;
@@ -38,6 +39,7 @@ type FormData = {
 const initialData: FormData = {
   name: "",
   stayDuration: "fri-sun",
+  avec: false,
   wantsToEat: false,
   diet: "",
   otherDietRestrictions: "",
@@ -142,6 +144,28 @@ export default function SignupPage() {
                 </div>
 
                 <div>
+                  <label
+                    className="mb-2 block text-xl font-bold"
+                  >
+                    MINULLA ON AVEC, JOKA EI OLE RYHMÄSSÄ
+                  </label>
+                  <RadioGroup defaultValue="Ei" className="gap-1 ml-2">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="Kyllä" id="yes" onClick={() => {
+                        setFormData({ ...formData, avec: true })
+                      }} />
+                      <label htmlFor="yes">Kyllä</label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="Ei" id="no" onClick={() => {
+                        setFormData({ ...formData, avec: false })
+                      }} />
+                      <label htmlFor="no">Ei</label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
+                <div>
                   <p className="text-xl font-bold">
                     RUOKA
                   </p>
@@ -157,7 +181,7 @@ export default function SignupPage() {
                     <>
                       <div>
                         <p className="mt-1 font-bold">NAKKIPREFERENSSI</p>
-                        <RadioGroup defaultValue="option-one" className="gap-1 ml-2">
+                        <RadioGroup className="gap-1">
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="Liha" id="meat" onClick={() => {
                               setFormData({ ...formData, diet: "Liha" })
@@ -165,7 +189,7 @@ export default function SignupPage() {
                             <label htmlFor="meat">Liha</label>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="option-two" id="veg" onClick={() => {
+                            <RadioGroupItem value="Kasvis" id="veg" onClick={() => {
                               setFormData({ ...formData, diet: "Kasvis" })
                             }} />
                             <label htmlFor="veg">Kasvis</label>
