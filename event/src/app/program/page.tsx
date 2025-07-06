@@ -30,8 +30,8 @@ export default function ProgramPage() {
             rows={8}
             className="flex h-[250px] md:h-[350px] max-w-[600px] items-center justify-center relative z-10 shadow-2xl"
           >
-            <h2 className="text-4xl md:text-5xl text-[#8B5E3C] text-center leading-8 md:leading-10 px-12 font-shadows-into-light">
-              TULOSSA HIUKKASEN MYÖHEMMIN
+            <h2 className="text-4xl md:text-5xl text-[#8B5E3C] text-center leading-8 md:leading-10 px-12 font-shadows-into-light overflow-x-visible">
+              TULOSSA EHKÄ
             </h2>
           </WoodenPlank>
           {/* Vertical support stick */}

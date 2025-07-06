@@ -14,8 +14,8 @@ const navigation = [
   { name: "Koti", href: "/" },
   { name: "Info", href: "/info" },
   { name: "Ohjelma", href: "/program" },
-  { name: "Kyydit", href: "/car-rides" },
   { name: "Ilmoittautuminen", href: "/signup" },
+  { name: "Kyydit", href: "/car-rides" },
 ];
 
 export function MobileNav() {

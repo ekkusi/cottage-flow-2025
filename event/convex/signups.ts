@@ -22,7 +22,9 @@ export const create = mutation({
       v.literal("only-fri"),
       v.literal("only-sat")
     ),
+    wantsToEat: v.boolean(),
     diet: v.string(),
+    otherDietRestrictions: v.string(),
     additionalInfo: v.string(),
   },
   handler: async (ctx, args) => {

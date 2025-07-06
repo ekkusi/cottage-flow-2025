@@ -17,7 +17,9 @@ export default defineSchema({
       v.literal("only-fri"),
       v.literal("only-sat")
     ),
+    wantsToEat: v.boolean(),
     diet: v.string(),
+    otherDietRestrictions: v.string(),
     additionalInfo: v.string(),
     createdAt: v.number(),
   }).index("by_createdAt", ["createdAt"]),
